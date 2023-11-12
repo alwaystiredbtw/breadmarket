@@ -82,7 +82,7 @@ a{
 }
 
 
-.produtos button{
+button{
     background: var(--blue);
 
     height: fit-content;
@@ -100,7 +100,7 @@ a{
 
 }
 
-.produtos button ion-icon{
+button ion-icon{
     font-size: 24px;
     color: var(--white);
 }
