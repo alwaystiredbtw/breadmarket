@@ -1,17 +1,47 @@
 <?php
 require_once('../connection.php');
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST'){
-    if(isset($_POST['logout'])){
-        $_SESSION['id_usuario'] = '';
-        $_SESSION['id_carrinho'] = '';
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['titulo']) && isset($_POST['preco']) && isset($_POST['descricao'])) {
+        $titulo = $_POST['titulo'];
+        $preco = $_POST['preco'];
+        $descricao = $_POST['descricao'];
 
-        header('Location: ../index.php');
+        $imagem_nome = '';
+        if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] === UPLOAD_ERR_OK) {
 
+            $nome_temporario = $_FILES['imagem']['tmp_name'];
+            $nome_original = $_FILES['imagem']['name'];
+            $extensao = pathinfo($nome_original, PATHINFO_EXTENSION);
+            $imagem_nome = '../arquivos/' . date('YmdHis') . '_' . uniqid() . '.' . $extensao;
+
+            if (!move_uploaded_file($nome_temporario, $imagem_nome)) {
+                echo "Erro ao mover o arquivo para a pasta.";
+                exit();
+            }
+        }
+
+        else{
+            echo "nenhum arquivo encontrado";
+        }
+
+        $query = "INSERT INTO produtos (titulo, preco, descricao, imagem) VALUES ('$titulo', '$preco', '$descricao', '$imagem_nome')";
+        $result = mysqli_query($conn, $query);
+
+        if ($result) {
+            echo "Produto adicionado com sucesso!";
+            // Pode redirecionar para outra página se desejado
+            header('Location: ./paginaInicial.php');
+        } else {
+            echo "Erro ao adicionar o produto: " . mysqli_error($conn);
+        }
+    } else {
+        echo "Preencha todos os campos obrigatórios";
     }
 }
-
 ?>
+
+
 
 
 
@@ -45,10 +75,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 
     </header>
 
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
 
         <div class="input-wrapper">
-            <label for="titulo">Título</label>
+            <label for="titulo">Título do Produto</label>
             <input type="text" name="titulo" id="titulo" placeholder="Ex: Cueca Virada">
         </div>
 
@@ -64,7 +94,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 
         <div class="input-wrapper">
             <label for="imagem">Imagem do produto</label>
-            <input type="file" name="imagem" id="imagem" />
+            <input type="file" name="imagem" id="imagem">
         </div>
 
         <button type="submit">Adicionar Produto <ion-icon name="add"></ion-icon></button>

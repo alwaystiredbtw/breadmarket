@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
         <div class="produto">
             <div class="left">
                 <div class="top">
-                    <img src="../arquivos/'. $produtos['imagem'] .'" alt="">
+                    <img src=" '. $produtos['imagem'] .'" alt="">
                     <h3>'. $produtos['titulo'] .'</h3>
                 </div>
                 <p class="preco">R$ '. $produtos['preco'] .' / Unidade</p>

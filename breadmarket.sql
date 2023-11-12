@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 12-Nov-2023 às 21:38
+-- Tempo de geração: 12-Nov-2023 às 22:49
 -- Versão do servidor: 10.4.25-MariaDB
 -- versão do PHP: 8.0.23
 
@@ -65,8 +65,15 @@ CREATE TABLE `produtos` (
   `titulo` varchar(250) NOT NULL,
   `descricao` varchar(250) NOT NULL,
   `preco` float NOT NULL,
-  `imagem` varchar(250) NOT NULL
+  `imagem` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `produtos`
+--
+
+INSERT INTO `produtos` (`id`, `titulo`, `descricao`, `preco`, `imagem`) VALUES
+(9, 'Pão Frances', 'Pãozinho', 15, '../arquivos/20231112224516_6551476c5243e.png');
 
 -- --------------------------------------------------------
 
@@ -137,7 +144,7 @@ ALTER TABLE `itens_carrinho`
 -- AUTO_INCREMENT de tabela `produtos`
 --
 ALTER TABLE `produtos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de tabela `usuarios`
