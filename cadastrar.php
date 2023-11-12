@@ -45,11 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             } else {
                 echo "Erro ao cadastrar usuário: " . mysqli_error($conn);
             }
-        } else {
-            echo "As senhas não coincidem";
         }
-    } else {
-        echo "Preencha todos os campos";
     }
 }
 ?>
@@ -71,36 +67,88 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <img src="./assets/logo-index.png" alt="Logo Bread Market" class="logo">
     </header>
 
-    <form method="post">
+    <form method="post" id="formCadastro">
         <h1>Cadastro</h1>
 
         <div class="input-wrapper">
             <label for="nome">Nome</label>
-            <input type="name" name="nome" id="nome">
+            <input type="text" name="nome" id="nome" placeholder="Insira seu nome" minlength="5" required>
         </div>
 
         <div class="input-wrapper">
             <label for="login">E-mail</label>
-            <input type="email" name="login" id="login">
+            <input type="email" name="login" id="login" placeholder="Insira seu email" required>
         </div>
 
         <div class="input-wrapper">
             <label for="senha">Senha</label>
-            <input type="password" name="senha" id="senha">
+            <input type="password" name="senha" id="senha" placeholder="Insira uma senha"   minlength="6"  required>
         </div>
 
         <div class="input-wrapper">
             <label for="confirmar-senha">Confirmar Senha</label>
-            <input type="password" name="confirmar-senha" id="confirmar-senha">
+            <input type="password" name="confirmar-senha" id="confirmar-senha"  placeholder="Confirme sua senha" minlength="6" required>
         </div>
 
         <button type="submit">Cadastrar</button>
 
         <a href="./index.php">Já possuí login? Login aqui</a>
     </form>
-    
-
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
+
+<script>
+    document.getElementById('meuFormulario').addEventListener('submit', function(event) {
+        var nomeInput = document.getElementById('nome');
+        var emailInput = document.getElementById('email');
+        var senhaInput = document.getElementById('senha');
+        var confirmarSenhaInput = document.getElementById('confirmarSenha');
+
+        // Validar o campo de nome
+        if (!isValidNome(nomeInput.value)) {
+            nomeInput.setCustomValidity('Por favor, insira um nome válido.');
+        } else {
+            nomeInput.setCustomValidity('');
+        }
+
+        // Validar o campo de email
+        if (!isValidEmail(emailInput.value)) {
+            emailInput.setCustomValidity('Por favor, insira um endereço de email válido.');
+        } else {
+            emailInput.setCustomValidity('');
+        }
+
+        // Validar o campo de senha (por exemplo, pelo menos 8 caracteres)
+        if (!isValidSenha(senhaInput.value)) {
+            senhaInput.setCustomValidity('A senha deve ter pelo menos 8 caracteres.');
+        } else {
+            senhaInput.setCustomValidity('');
+        }
+
+        // Validar a confirmação de senha
+        if (confirmarSenhaInput.value !== senhaInput.value) {
+            confirmarSenhaInput.setCustomValidity('As senhas não coincidem.');
+        } else {
+            confirmarSenhaInput.setCustomValidity('');
+        }
+    });
+
+    // Função para validar o nome (por exemplo, apenas letras e espaços)
+    function isValidNome(nome) {
+        var nomeRegex = /^[a-zA-Z\s]+$/;
+        return nomeRegex.test(nome);
+    }
+
+    // Função para validar o formato do email
+    function isValidEmail(email) {
+        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+
+    // Função para validar a senha (por exemplo, pelo menos 8 caracteres)
+    function isValidSenha(senha) {
+        return senha.length >= 8;
+    }
+</script>
+
+
 </html>

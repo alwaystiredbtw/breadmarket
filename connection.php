@@ -2,7 +2,7 @@
 $host = '127.0.0.1:3306';
 $db = 'breadMarket';
 $user = 'root';
-$password = 'admin';
+$password = '';
 
 $conn = new mysqli($host, $user, $password, $db);
 
