@@ -1,0 +1,16 @@
+form{
+    width: fit-content;
+    align-self: none;
+
+    display: flex;
+    padding: 0;
+    padding-bottom: 0;
+
+    flex-direction: row;
+    align-items: center;
+    gap: 0;
+}
+
+a{
+    cursor: pointer;
+}

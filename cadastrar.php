@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($senha === $confirmarSenha) {
             // Inserir o novo usuário na tabela 'usuarios'
-            $query = "INSERT INTO usuarios (nome, email, senha) VALUES ('$nome', '$login', '$senha')";
+            $query = "INSERT INTO usuarios (nome, email, senha, tipo_usuario) VALUES ('$nome', '$login', '$senha', 0)";
             $result = mysqli_query($conn, $query);
 
             if ($result) {
