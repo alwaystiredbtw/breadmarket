@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
     </header>
 
     <div class="produtos">
-        <? 
+        <?php
         $query = "SELECT * FROM produtos";
 
         $resultProdutos = mysqli_query($conn, $query);
@@ -70,7 +70,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
         }
 
         ?>
-
 
         <button onclick="window.location.href='./adicionarProduto.php'">Adicionar Produto <ion-icon name="add"></ion-icon></button>
     </div>
