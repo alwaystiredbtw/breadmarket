@@ -32,9 +32,36 @@ require_once('./connection.php');
     </header>
 
     <div class="filters">
-        <a href="./paginaInicial.php?" class="filter">Pão Francês</a>
-        <a href="./paginaInicial.php?" class="filter">Cueca Virada</a>
-        <a href="./paginaInicial.php?" class="filter">Pão Francês</a>
+        <?php 
+        $query = "SELECT * FROM produtos";
+
+        $result = mysqli_query($conn, $query);
+
+        while ($row = mysqli_fetch_assoc($result)) {
+            echo'<a href="./paginaInicial.php?'.$row['id'].'" class="filter">'. $row['titulo'] .'</a>';
+        }
+        ?>
+
+    </div>
+
+    <div class="produtos">
+    <?php 
+        $query = "SELECT * FROM produtos";
+
+        $result = mysqli_query($conn, $query);
+
+        while ($row = mysqli_fetch_assoc($result)) {
+            echo'
+            <div class="produto">
+                <img src="./arquivos/'. $row['imagem'] .'">
+                <p class="titulo">'. $row['titulo'] .'</p>
+                <p class="preco">R$ '. $row['preco'] .' /unidade</p>
+            </div>
+            ';
+        }
+        ?>
+
+
     </div>
 
 

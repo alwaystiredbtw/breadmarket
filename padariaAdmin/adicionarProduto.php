@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $nome_temporario = $_FILES['imagem']['tmp_name'];
             $nome_original = $_FILES['imagem']['name'];
             $extensao = pathinfo($nome_original, PATHINFO_EXTENSION);
-            $imagem_nome = '../arquivos/' . date('YmdHis') . '_' . uniqid() . '.' . $extensao;
+            $imagem_nome = date('YmdHis') . '_' . uniqid() . '.' . $extensao;
 
             if (!move_uploaded_file($nome_temporario, $imagem_nome)) {
                 echo "Erro ao mover o arquivo para a pasta.";
