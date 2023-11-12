@@ -40,11 +40,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
                 <input type="hidden" name="logout">
                 <a onclick="document.getElementById('logOutForm').submit();"><ion-icon name="exit-sharp"></ion-icon></a>
             </form>
-
         </div>
+
     </header>
 
+    <div class="produtos">
+        <? 
+        $query = "SELECT * FROM produtos";
 
+        $resultProdutos = mysqli_query($conn, $query);
+
+        while($produtos = mysqli_fetch_assoc($resultProdutos)){
+            echo '
+            
+        <div class="produto">
+            <div class="left">
+                <div class="top">
+                    <img src="../arquivos/'. $produtos['imagem'] .'" alt="">
+                    <h3>'. $produtos['titulo'] .'</h3>
+                </div>
+                <p class="preco">R$ '. $produtos['preco'] .' / Unidade</p>
+            </div>
+            <div class="right">
+                <a href="./editarProduto.php?'. $produtos['id'] .'"><ion-icon name="pencil"></ion-icon></a>
+                <a href="./excluirProduto.php?'. $produtos['id'] .'"><ion-icon name="trash"></ion-icon></a>
+            </div>
+        </div>
+            ';
+        }
+
+        ?>
+
+
+        <button onclick="window.location.href='./adicionarProduto.php'">Adicionar Produto <ion-icon name="add"></ion-icon></button>
+    </div>
 
 
     
