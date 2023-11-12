@@ -1,0 +1,39 @@
+header{
+    justify-content: space-between;    
+    align-items: center;
+}
+
+header .logo{
+    height: 88px;
+}
+
+header .right{
+    display: flex;
+    gap: 32px;
+}
+
+header .right ion-icon{
+    font-size: 28px;
+}
+
+.filters{
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.filter{
+    display: flex;
+    padding: 8px 16px;
+    justify-content: center;
+    align-items: center;
+
+    border: 2px solid var(--orange);
+    border-radius: 9999px;
+
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--orange);
+
+    text-transform: uppercase;
+}
