@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 12-Nov-2023 às 20:03
+-- Tempo de geração: 12-Nov-2023 às 21:38
 -- Versão do servidor: 10.4.25-MariaDB
 -- versão do PHP: 8.0.23
 
@@ -38,7 +38,8 @@ CREATE TABLE `carrinhos` (
 
 INSERT INTO `carrinhos` (`id`, `id_usuario`) VALUES
 (1, 1),
-(2, 2);
+(2, 2),
+(3, 3);
 
 -- --------------------------------------------------------
 
@@ -77,15 +78,16 @@ CREATE TABLE `usuarios` (
   `id` int(11) NOT NULL,
   `nome` varchar(250) NOT NULL,
   `email` varchar(240) NOT NULL,
-  `senha` varchar(240) NOT NULL
+  `senha` varchar(240) NOT NULL,
+  `tipo_usuario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `usuarios`
 --
 
-INSERT INTO `usuarios` (`id`, `nome`, `email`, `senha`) VALUES
-(2, 'Sidnei Henrique', 'henrisrs@hotmail.com', '123');
+INSERT INTO `usuarios` (`id`, `nome`, `email`, `senha`, `tipo_usuario`) VALUES
+(2, 'Sidnei Henrique', 'henrisrs@hotmail.com', '123', 1);
 
 --
 -- Índices para tabelas despejadas
@@ -123,7 +125,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de tabela `carrinhos`
 --
 ALTER TABLE `carrinhos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `itens_carrinho`
@@ -141,7 +143,7 @@ ALTER TABLE `produtos`
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
