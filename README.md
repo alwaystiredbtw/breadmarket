@@ -1,3 +1,3 @@
 # breadmarket
 Projeto PWEB
-Alunos: Eduardo Moura, Sidney Henrique, Pedro Henrique Pereira
+Alunos: Eduardo Moura, Sidnei Henrique, Pedro Henrique Pereira
