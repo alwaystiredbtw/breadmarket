@@ -96,7 +96,12 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['excluir-do-carrinho']){
             if($result->num_rows > 0){
                 while($rowItemCarrinho = mysqli_fetch_assoc($result)){
                     $quantidade = $rowItemCarrinho['quantidade'];
+                    
+                    // Utiliza somente na hora de excluir do carrinho:
                     $id_produto_carrinho = $rowItemCarrinho['id'];
+
+                    $id_produto = $rowItemCarrinho['id_produto'];
+
 
                     $query = "SELECT * FROM produtos WHERE id = $id_produto";
 
