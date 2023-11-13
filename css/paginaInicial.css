@@ -13,11 +13,23 @@ header .right{
 }
 
 header .right a{
-    cursor: pointer;
+    cursor: pointer;    
+    transition: 0.7s;
+}
+
+header .right a:hover{
+    color: var(--orange);
+    transition: 0.7s;
+}
+
+header .right a:hover ion-icon{
+    color: var(--orange);
+    transition: 0.7s;
 }
 
 header .right ion-icon{
     font-size: 28px;
+    transition: 0.7s;
 }
 
 .filters{
@@ -40,6 +52,14 @@ header .right ion-icon{
     color: var(--orange);
 
     text-transform: uppercase;
+
+    transition: 0.7s;
+}
+
+.filter:hover{
+    background: var(--orange);
+    color: var(--white);
+    transition: 0.7s;
 }
 
 .produtos{
@@ -68,7 +88,7 @@ header .right ion-icon{
 }
 
 .produtos .produto:hover{
-    transform: scale(1.07);
+    transform: scale(1.05);
     transition: transform 0.7s;
 }
 
