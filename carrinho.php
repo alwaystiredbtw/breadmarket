@@ -146,28 +146,10 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['excluir-do-carrinho']){
             }
             ?>
 
-            <!-- <div class="item-carrinho">
-
-                <div class="left">
-                    <img src="./assets/cueca-virada.png" alt="">
-                    <p class="titulo">Cueca Virada</p>
-                </div>
-
-                <div class="right">
-                    <div class="results">
-                        <p class="quantidade">Quantidade: </p>
-                        <p class="total">Total: </p>
-                    </div>
-
-                               
-                    <form method="post" id="excluirDoCarrinho">
-                        <input type="hidden" name="excluir-do-carrinho">
-                        <a onclick="document.getElementById('excluirDoCarrinho').submit();"><ion-icon name="trash"></ion-icon></a>
-                    </form>
-
-                </div>
-
-            </div> -->
+            <div class="input-wrapper">
+                <label>Total</label>
+                <div id="total-carrinho"></div>
+            </div>
 
             <button>Realizar Pagamento <span>$</span></button>
         </div>
@@ -181,20 +163,34 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['excluir-do-carrinho']){
             document.querySelector('.modal-logout').classList.toggle('open');
         }
 
-        const precoProduto = document.querySelector('.preco');
-        const campoQuantidade = document.getElementById('quantidade');
-        const campoTotal = document.querySelector('.result');
+        document.addEventListener("DOMContentLoaded", function () {
+            // Pega todas as classes com o nome "total"
+            const totalElements = document.querySelectorAll(".total");
 
-        // Remove o "R$ " e pega apenas o valor numérico do preço
-        const precoNumerico = parseFloat(precoProduto.textContent.replace('R$ ', '').split(' /')[0]);
+            // Inicializa a variável para armazenar a soma
+            let somaTotal = 0;
 
-        // Adiciona um evento de escuta para detectar mudanças no campo de quantidade
-        campoQuantidade.addEventListener('input', () => {
-            // Calcula o total multiplicando o preço pelo valor da quantidade
-            const total = precoNumerico * parseInt(campoQuantidade.value || 0);
+            // Itera sobre cada elemento com a classe "total"
+            totalElements.forEach(function (element) {
+                // Obtém o conteúdo do elemento
+                const conteudo = element.textContent;
 
-            // Atualiza o elemento p.result com o valor total calculado
-            campoTotal.textContent = `R$ ${total.toFixed(2)}`;
+                // Usa uma expressão regular para extrair apenas os valores numéricos
+                const valoresNumericos = conteudo.match(/(\d|,|\.)/g);
+
+                // Se houver valores numéricos, converte para número e adiciona à somaTotal
+                if (valoresNumericos) {
+                    const valorNumerico = parseFloat(valoresNumericos.join("").replace(",", "."));
+                    somaTotal += valorNumerico;
+                }
+            });
+
+            // Formata a somaTotal como R$ e exibe na div com id "total-carrinho"
+            const totalCarrinhoElement = document.getElementById("total-carrinho");
+            totalCarrinhoElement.textContent = "R$" + somaTotal.toFixed(2).replace(".", ",");
+
+            // Pode ser útil também logar a soma no console para debug
+            console.log("Soma Total:", somaTotal);
         });
 
     </script>
