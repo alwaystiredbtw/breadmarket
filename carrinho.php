@@ -169,32 +169,24 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['excluir-do-carrinho']){
         }
 
         document.addEventListener("DOMContentLoaded", function () {
-            // Pega todas as classes com o nome "total"
             const totalElements = document.querySelectorAll(".total");
 
-            // Inicializa a variável para armazenar a soma
             let somaTotal = 0;
 
-            // Itera sobre cada elemento com a classe "total"
             totalElements.forEach(function (element) {
-                // Obtém o conteúdo do elemento
                 const conteudo = element.textContent;
 
-                // Usa uma expressão regular para extrair apenas os valores numéricos
                 const valoresNumericos = conteudo.match(/(\d|,|\.)/g);
 
-                // Se houver valores numéricos, converte para número e adiciona à somaTotal
                 if (valoresNumericos) {
                     const valorNumerico = parseFloat(valoresNumericos.join("").replace(",", "."));
                     somaTotal += valorNumerico;
                 }
             });
 
-            // Formata a somaTotal como R$ e exibe na div com id "total-carrinho"
             const totalCarrinhoElement = document.getElementById("total-carrinho");
             totalCarrinhoElement.textContent = "R$" + somaTotal.toFixed(2).replace(".", ",");
 
-            // Pode ser útil também logar a soma no console para debug
             console.log("Soma Total:", somaTotal);
         });
 
