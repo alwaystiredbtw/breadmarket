@@ -1,49 +1,32 @@
 <?php
 require_once('../connection.php');
+//POST DO UPDATE
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['titulo']) && isset($_POST['preco']) && isset($_POST['descricao'])) {
-        $titulo = $_POST['titulo'];
-        $preco = $_POST['preco'];
-        $descricao = $_POST['descricao'];
+//GET
 
-        $imagem_nome = '';
-        if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] === UPLOAD_ERR_OK) {
+if(!empty($_GET['id_produto'])) {
+    $id = $_GET['id_produto'];
+    $sqlSelect = "SELECT * FROM produtos WHERE id='$id'";
 
-            $nome_temporario = $_FILES['imagem']['tmp_name'];
-            $nome_original = $_FILES['imagem']['name'];
-            $extensao = pathinfo($nome_original, PATHINFO_EXTENSION);
-            $imagem_nome = date('YmdHis') . '_' . uniqid() . '.' . $extensao;
-            $caminho_imagem = '../arquivos/' . $imagem_nome;
+    try {
+        $result = mysqli_query($conn, $sqlSelect);
+        mysqli_num_rows($result);
+        if ($result->num_rows > 0) {
+            while ($produtos = mysqli_fetch_assoc($result)) {
+                $titulo = $produtos['titulo'];
+                $descricao = $produtos['descricao'];
+                $preco = $produtos['preco'];
 
-            if (!move_uploaded_file($nome_temporario, $caminho_imagem)) {
-                echo "Erro ao mover o arquivo para a pasta.";
-                exit();
             }
         }
-
-        else{
-            echo "nenhum arquivo encontrado";
-        }
-
-        $query = "INSERT INTO produtos (titulo, preco, descricao, imagem) VALUES ('$titulo', '$preco', '$descricao', '$imagem_nome')";
-        $result = mysqli_query($conn, $query);
-
-        if ($result) {
-            echo "Produto adicionado com sucesso!";
-            // Pode redirecionar para outra página se desejado
-            header('Location: ./paginaInicial.php');
-        } else {
-            echo "Erro ao adicionar o produto: " . mysqli_error($conn);
-        }
-    } else {
-        echo "Preencha todos os campos obrigatórios";
+    } catch (\mysql_xdevapi\Exception $ex) {
+//        'query zuada';
     }
 }
+
+
+
 ?>
-
-
-
 
 
 
@@ -68,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
 
         <div class="right">
-            <form method="post" id="logOutForm">
+            <form method="POST" id="logOutForm">
                 <input type="hidden" name="logout">
                 <a onclick="document.getElementById('logOutForm').submit();"><ion-icon name="exit-sharp"></ion-icon></a>
             </form>
@@ -76,35 +59,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     </header>
 
-    <form method="post" enctype="multipart/form-data">
+    <form action="editarProdutoSave.php?id_produto=<?php echo $id?>" method="post" enctype="multipart/form-data">
 
         <div class="input-wrapper">
             <label for="titulo">Título do Produto</label>
-            <input type="text" name="titulo" id="titulo" placeholder="Ex: Cueca Virada">
+            <input type="text" name="titulo" id="titulo" value="<?php echo $titulo ?>" required>
         </div>
 
         <div class="input-wrapper">
             <label for="preco">Preço por unidade</label>
-            <input type="number" name="preco" id="preco" placeholder="Ex: R$ 3,40">
+            <input type="number" name="preco" id="preco" value="<?php echo $preco ?>"  required>
         </div>
 
         <div class="input-wrapper">
             <label for="descricao">Descrição do produto</label>
-            <textarea name="descricao" id="descricao" placeholder="Ex: Cueca virada extremamente macia, feita por nossos melhores padeiros"></textarea>
+            <textarea name="descricao" id="descricao" required><?php echo $descricao ?></textarea>
         </div>
 
         <div class="input-wrapper">
             <label for="imagem">Imagem do produto</label>
-            <input type="file" name="imagem" id="imagem">
+            <input type="file" name="imagem" id="imagem" required >
         </div>
 
-        <button type="submit">Editar Produto <ion-icon name="pencil"></ion-icon></button>
-
+        <button name="update" type="submit">Salvar Produto <ion-icon name="pencil" ></ion-icon></button>
 
     </form>
 
-
-    
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
