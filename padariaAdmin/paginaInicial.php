@@ -15,7 +15,6 @@ require_once('../connection.php');
     <title>Bread Market</title>
 
     <link rel="stylesheet" href="../css/index.css">
-    <link rel="stylesheet" href="../css/paginaInicial.css">
     <link rel="stylesheet" href="../css/paginaInicialPadariaAdmin.css">
 </head>
 <body>
