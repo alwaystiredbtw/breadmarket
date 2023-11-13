@@ -70,7 +70,7 @@ require_once('./connection.php');
 
         while ($row = mysqli_fetch_assoc($result)) {
             echo'
-            <div class="produto">
+            <div class="produto" onclick="window.location.href=`./visualizarProduto.php?id='. $row['id'] .'`">
                 <img src="./arquivos/'. $row['imagem'] .'">
                 <p class="titulo">'. $row['titulo'] .'</p>
                 <p class="preco">R$ '. $row['preco'] .' /unidade</p>
