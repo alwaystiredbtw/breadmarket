@@ -1,6 +1,7 @@
 <?php
 require_once('./connection.php');
 
+
 ?>
 
 
@@ -43,12 +44,19 @@ require_once('./connection.php');
 
     <div class="filters">
         <?php 
-        $query = "SELECT * FROM produtos";
+        if(isset($_GET['id'])){
+            $id = $_GET['id'];
+            $query = "SELECT * FROM produtos WHERE id = $id";
+            
+        }
+        else{
+            $query = "SELECT * FROM produtos";
+        }
 
         $result = mysqli_query($conn, $query);
 
         while ($row = mysqli_fetch_assoc($result)) {
-            echo'<a href="./paginaInicial.php?'.$row['id'].'" class="filter">'. $row['titulo'] .'</a>';
+            echo'<a href="./paginaInicial.php?id='.$row['id'].'" class="filter">'. $row['titulo'] .'</a>';
         }
         ?>
 
