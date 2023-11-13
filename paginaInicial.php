@@ -32,11 +32,11 @@ require_once('./connection.php');
 
     <header>
         <div class="left">
-            <img src="./assets/logo.png" alt="Logo Bread Market" class="logo">
+            <img src="./assets/logo.png" alt="Logo Bread Market" class="logo" onclick="window.location.href='paginaInicial.php'">
         </div>
 
         <div class="right">
-            <a href="./carrinho.php?<?$_SESSION['id_carrinho'] ?>"><ion-icon name="cart"></ion-icon></a>
+            <a href="./carrinho.php?id_carrinho=<?php echo $_SESSION['id_carrinho'] ?>"><ion-icon name="cart"></ion-icon></a>
             <a onclick="openExitModal()"><ion-icon name="ellipsis-vertical"></ion-icon></a>
 
         </div>
@@ -44,14 +44,8 @@ require_once('./connection.php');
 
     <div class="filters">
         <?php 
-        if(isset($_GET['id'])){
-            $id = $_GET['id'];
-            $query = "SELECT * FROM produtos WHERE id = $id";
-            
-        }
-        else{
-            $query = "SELECT * FROM produtos";
-        }
+        $query = "SELECT * FROM produtos";
+       
 
         $result = mysqli_query($conn, $query);
 
@@ -64,7 +58,14 @@ require_once('./connection.php');
 
     <div class="produtos">
     <?php 
-        $query = "SELECT * FROM produtos";
+        if(isset($_GET['id'])){
+            $id = $_GET['id'];
+            $query = "SELECT * FROM produtos WHERE id = $id";
+            
+        }
+        else{
+            $query = "SELECT * FROM produtos";
+        }
 
         $result = mysqli_query($conn, $query);
 

@@ -46,14 +46,14 @@ require_once('../connection.php');
         <div class="produto">
             <div class="left">
                 <div class="top">
-                    <img src=" '. $produtos['imagem'] .'" alt="">
+                    <img src="../arquivos/'. $produtos['imagem'] .'" alt="">
                     <h3>'. $produtos['titulo'] .'</h3>
                 </div>
                 <p class="preco">R$ '. $produtos['preco'] .' / Unidade</p>
             </div>
             <div class="right">
-                <a href="./editarProduto.php?'. $produtos['id'] .'"><ion-icon name="pencil"></ion-icon></a>
-                <a href="./excluirProduto.php?'. $produtos['id'] .'"><ion-icon name="trash"></ion-icon></a>
+                <a href="./editarProduto.php?id_produto='. $produtos['id'] .'"><ion-icon name="pencil"></ion-icon></a>
+                <a href="./excluirProduto.php?id_produto='. $produtos['id'] .'"><ion-icon name="trash"></ion-icon></a>
             </div>
         </div>
             ';

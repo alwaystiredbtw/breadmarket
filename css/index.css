@@ -64,6 +64,8 @@ header{
 
 header .logo{
     height: 126px;
+
+    cursor: pointer;
 }
 
 form{

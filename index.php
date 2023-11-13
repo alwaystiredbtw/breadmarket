@@ -1,6 +1,6 @@
 <?php
 require_once('./connection.php');
-session_start();
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['login']) && isset($_POST['senha'])) {

@@ -9,6 +9,26 @@ if(isset($_GET['id'])){
 
     $row = mysqli_fetch_array($result);
 }
+
+if($_SERVER['REQUEST_METHOD'] === 'POST'){
+    if(isset($_POST['quantidade']) && isset($id) && isset($_SESSION['id_carrinho'])){
+        $quantidade = $_POST['quantidade'];
+        $id_carrinho = $_SESSION['id_carrinho'];
+        $id_produto = $id;
+
+
+        $query = "INSERT INTO itens_carrinho (id_carrinho, id_produto, quantidade) VALUES ('$id_carrinho', '$id_produto', '$quantidade')";
+
+        if($result = mysqli_query($conn, $query)){
+            header("Location: ./carrinho.php?id_carrinho=$id_carrinho");
+        }
+        else{
+            echo 'Ocorreu um problema';
+        }
+
+    }
+
+}
 ?>
 
 
@@ -40,11 +60,11 @@ if(isset($_GET['id'])){
 
     <header>
         <div class="left">
-            <img src="./assets/logo.png" alt="Logo Bread Market" class="logo">
+            <img src="./assets/logo.png" alt="Logo Bread Market" class="logo" onclick="window.location.href='paginaInicial.php'">
         </div>
 
         <div class="right">
-            <a href="./carrinho.php?<?$_SESSION['id_carrinho'] ?>"><ion-icon name="cart"></ion-icon></a>
+            <a href="./carrinho.php?id_carrinho=<?php echo $_SESSION['id_carrinho'] ?>"><ion-icon name="cart"></ion-icon></a>
             <a onclick="openExitModal()"><ion-icon name="ellipsis-vertical"></ion-icon></a>
 
         </div>

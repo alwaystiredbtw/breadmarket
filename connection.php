@@ -10,4 +10,6 @@ if ($conn->connect_error) {
     var_dump($conn->connect_error);
 }
 
+session_start();
+
 ?>
