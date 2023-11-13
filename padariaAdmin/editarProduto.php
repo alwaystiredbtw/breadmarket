@@ -98,7 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="file" name="imagem" id="imagem">
         </div>
 
-        <button type="submit">Adicionar Produto <ion-icon name="add"></ion-icon></button>
+        <button type="submit">Editar Produto <ion-icon name="pencil"></ion-icon></button>
 
 
     </form>
