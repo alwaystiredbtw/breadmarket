@@ -12,7 +12,7 @@ if(isset($_GET['id_carrinho'])){
 if($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['excluir-do-carrinho']){
     $id_produto_excluir = $_POST['excluir-do-carrinho'];
 
-    $query = "DELETE FROM itens_carrinho WHERE id_produto = $id_produto_excluir";
+    $query = "DELETE FROM itens_carrinho WHERE id = $id_produto_excluir";
     if($result = mysqli_query($conn, $query)){
         echo "Produto removido com sucesso";
         header("Location: ./carrinho.php?id_carrinho=". $_SESSION['id_carrinho']);
@@ -96,7 +96,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['excluir-do-carrinho']){
             if($result->num_rows > 0){
                 while($rowItemCarrinho = mysqli_fetch_assoc($result)){
                     $quantidade = $rowItemCarrinho['quantidade'];
-                    $id_produto = $rowItemCarrinho['id_produto'];
+                    $id_produto_carrinho = $rowItemCarrinho['id'];
 
                     $query = "SELECT * FROM produtos WHERE id = $id_produto";
 
@@ -126,7 +126,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['excluir-do-carrinho']){
 
                                         
                                 <form method="post" id="excluirDoCarrinho">
-                                    <input type="hidden" name="excluir-do-carrinho" value="'. $id_produto .'">
+                                    <input type="hidden" name="excluir-do-carrinho" value="'. $id_produto_carrinho .'">
                                     <a onclick="document.getElementById(`excluirDoCarrinho`).submit();"><ion-icon name="trash"></ion-icon></a>
                                 </form>
 
