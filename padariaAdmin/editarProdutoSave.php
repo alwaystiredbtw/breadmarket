@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         $sqlUpdate = "UPDATE produtos SET titulo='$titulo',
-        descricao='$descricao',preco='$preco' where id=$id";
+        descricao='$descricao',preco='$preco',imagem='$imagem_nome' where id=$id";
         $result = mysqli_query($conn, $sqlUpdate);
         if ($result) {
             header('Location:paginaInicial.php');

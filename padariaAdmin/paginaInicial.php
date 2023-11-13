@@ -52,7 +52,7 @@ require_once('../connection.php');
             </div>
             <div class="right">
                 <a href="./editarProduto.php?id_produto='. $produtos['id'] .'"><ion-icon name="pencil"></ion-icon></a>
-                <a href="./excluirProduto.php?id_produto='. $produtos['id'] .'"><ion-icon name="trash"></ion-icon></a>
+                <a href="./deleteProduto.php?id_produto='. $produtos['id'] .'"><ion-icon name="trash"></ion-icon></a>
             </div>
         </div>
             ';
