@@ -59,7 +59,9 @@ if(!empty($_GET['id_produto'])) {
 
     </header>
 
-    <form action="editarProdutoSave.php?id_produto=<?php echo $id?>" method="post" enctype="multipart/form-data">
+    <form action="editarProdutoSave.php" method="post" enctype="multipart/form-data">
+
+        <input type="hidden" name="id_produto" value="<?php echo $id ?>">
 
         <div class="input-wrapper">
             <label for="titulo">Título do Produto</label>
