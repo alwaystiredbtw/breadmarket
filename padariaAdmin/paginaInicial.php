@@ -1,16 +1,6 @@
 <?php
 require_once('../connection.php');
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST'){
-    if(isset($_POST['logout'])){
-        $_SESSION['id_usuario'] = '';
-        $_SESSION['id_carrinho'] = '';
-
-        header('Location: ../index.php');
-
-    }
-}
-
 ?>
 
 
@@ -36,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
         </div>
 
         <div class="right">
-            <form method="post" id="logOutForm">
+            <form method="post" id="logOutForm" action="../logout.php">
                 <input type="hidden" name="logout">
                 <a onclick="document.getElementById('logOutForm').submit();"><ion-icon name="exit-sharp"></ion-icon></a>
             </form>

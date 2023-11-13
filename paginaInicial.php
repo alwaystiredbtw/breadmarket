@@ -19,6 +19,16 @@ require_once('./connection.php');
 </head>
 <body>
 
+    <div class="modal-logout">
+        <div class="card">
+            <form action="./logout.php" method="post" id="logOutForm">
+                <input type="hidden" name="logout">
+                <a onclick="document.getElementById('logOutForm').submit();">Log Out<ion-icon name="exit-sharp"></ion-icon></a>
+            </form>
+        </div>
+        <div class="bg-transparent" onclick="openExitModal()"></div>
+    </div>
+
     <header>
         <div class="left">
             <img src="./assets/logo.png" alt="Logo Bread Market" class="logo">
@@ -66,6 +76,11 @@ require_once('./connection.php');
 
 
     
+    <script language="Javascript">
+        function openExitModal(){
+            document.querySelector('.modal-logout').classList.toggle('open');
+        }
+    </script>
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>

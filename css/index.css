@@ -41,6 +41,8 @@ button{
     border: 0;
     border-radius: 9999px;
     background: var(--orange);
+
+    cursor: pointer;
 }
 
 body {
