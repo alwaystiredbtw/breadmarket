@@ -8,7 +8,21 @@ if(isset($_GET['id_carrinho'])){
     $result = mysqli_query($conn, $query);
 
 }
+
+if($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['excluir-do-carrinho']){
+    $id_produto_excluir = $_POST['excluir-do-carrinho'];
+
+    $query = "DELETE FROM itens_carrinho WHERE id_produto = $id_produto_excluir";
+    if($result = mysqli_query($conn, $query)){
+        echo "Produto removido com sucesso";
+        header("Location: ./carrinho.php?id_carrinho=". $_SESSION['id_carrinho']);
+    }
+    else{
+        echo "Um problema ocorreu ao tentar remover seu item do carrinho" .  mysqli_error($conn);
+    }
+}
 ?>
+
 
 
 <!DOCTYPE html>
@@ -100,14 +114,14 @@ if(isset($_GET['id_carrinho'])){
                         <div class="item-carrinho">
 
                             <div class="left">
-                                <img src="./arquivos/'. $rowProduto['imagem'] .'" alt="">
-                                <p class="titulo">'. $rowProduto['titulo'] .'</p>
+                                <img src="./arquivos/'.$rowProduto['imagem'] .'">
+                                <p class="titulo">'.$rowProduto['titulo'] .'</p>
                             </div>
 
                             <div class="right">
                                 <div class="results">
-                                    <p class="quantidade">Quantidade: '. $quantidade .'</p>
-                                    <p class="total">Total: R$ '. $total_formatado .'</p>
+                                    <p class="quantidade">Quantidade:'. $quantidade .'</p>
+                                    <p class="total">Total: R$'. $total_formatado .'</p>
                                 </div>
 
                                         

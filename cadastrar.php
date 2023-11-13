@@ -1,8 +1,6 @@
 <?php
 require_once('./connection.php');
 
-session_start(); // Iniciando a sessão
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (
         isset($_POST['nome']) && 
